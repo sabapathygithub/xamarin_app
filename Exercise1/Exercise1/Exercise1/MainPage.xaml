@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Exercise1.ViewModels"
+             mc:Ignorable="d" Title="My First App"             
+             x:Class="Exercise1.MainPage">
+    <ContentPage.Resources>
+        <Style TargetType="{x:Type Editor}">
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource AppBackgroundColor}" />
+        </Style>
+        
+        <Style TargetType="Button"
+               ApplyToDerivedTypes="True"
+               CanCascade="True">
+            <Setter Property="BackgroundColor" Value="#1976D2" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Task" Command="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="xamagon" BackgroundColor="PowderBlue" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <Editor Text="{Binding Note}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Placeholder="Enter the note here" Margin="10,10"/>
+        <Button Command="{Binding SaveCommand}" BackgroundColor="Green" Margin="10,10" Text="Save" Grid.Column="0" Grid.Row="2"/>
+        <Button Command="{Binding EraseCommand}" BackgroundColor="Red" Margin="10,10" Text="Erase" Grid.Column="1" Grid.Row="2"/>
+        
+
+        <CollectionView Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Notes}" 
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedNote}" 
+                        SelectionChangedCommand="{Binding SelectionChangedCommand}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame>
+                            <Label FontSize="Large" Text="{Binding Text}"/>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
