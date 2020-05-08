@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Exercise2.AbsolutePage">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Image Aspect="AspectFill" Source="pebbles" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"/>
+            <Label Text="Relax" HorizontalOptions="Center" VerticalOptions="Start" FontAttributes="Bold" FontSize="30" AbsoluteLayout.LayoutBounds="0.5,20,1,1" AbsoluteLayout.LayoutFlags="XProportional,SizeProportional"  />
+            <BoxView HeightRequest="100" BackgroundColor="Black" Opacity="0.5" 
+                     AbsoluteLayout.LayoutBounds="0,1,1,100"  AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"/>
+            <StackLayout HeightRequest="100" Orientation="Horizontal" 
+                         VerticalOptions="Center" Padding="30,0"
+                         AbsoluteLayout.LayoutBounds="0,1,1,100"  AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional">
+                <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Profile"/>
+                <Label HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Text="Meditate"/>
+                <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Themes"/>
+            </StackLayout>
+        </AbsoluteLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

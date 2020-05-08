@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" Padding="10"
+             x:Class="Exercise2.StackPage1" BackgroundColor="#127ac7">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="#1dabf0"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Spacing="20">
+            <Label Text="Welcome to Xamarin" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label Text="This is a StackLayout example." HorizontalOptions="Center" FontSize="18"/>
+            <Button Text="Login"/>
+            <Button Text="Register"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

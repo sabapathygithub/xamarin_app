@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:localview="clr-namespace:Exercise2"
+             mc:Ignorable="d"
+             x:Class="Exercise2.MainPage">
+    <MasterDetailPage.Master>
+        <ContentPage Title="Master Menu">
+            <StackLayout>
+                <ListView x:Name="MenuList">
+                    <ListView.ItemsSource>
+                        <x:Array Type="{x:Type localview:MasterPageItem}">
+                            <localview:MasterPageItem Title="Databinding" TargetType="{x:Type localview:DatabindingPage}"/>
+                            <localview:MasterPageItem Title="Stack Layout 1" TargetType="{x:Type localview:StackPage1}"/>
+                            <localview:MasterPageItem Title="Stack Layout 2" TargetType="{x:Type localview:StackPage2}"/>
+                            <localview:MasterPageItem Title="Grid Layout(Dialpad)" TargetType="{x:Type localview:DialpadPage}"/>
+                            <localview:MasterPageItem Title="Absolute Layout 1" TargetType="{x:Type localview:AbsolutePage}"/>
+                            <localview:MasterPageItem Title="Absolute Layout 2" TargetType="{x:Type localview:AbsolutePaymentPage}"/>
+                            <localview:MasterPageItem Title="Relative Layout 1" TargetType="{x:Type localview:RelativePage}"/>
+                        </x:Array>
+                    </ListView.ItemsSource>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Title}"></TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <localview:DatabindingPage/>
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>
