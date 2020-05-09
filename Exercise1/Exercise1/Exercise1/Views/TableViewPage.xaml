@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:extension="clr-namespace:Exercise1.Extension"
+             mc:Ignorable="d" Title="Table View Sample"
+             x:Class="Exercise1.Views.TableViewPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView HasUnevenRows="True" Intent="Data">
+                <TableRoot>
+                    <TableSection Title="Personal">
+                        <TextCell Text="Name" Detail="Sabapathy"/>
+                        <EntryCell Label="Username" Placeholder="(Username)"/>
+                        <extension:DateCell Label="Start Date"/>
+                        <ViewCell>
+                            <StackLayout Padding="15,0" Orientation="Horizontal">
+                                <Label VerticalOptions="Center" Text="DOB"/>
+                                <DatePicker HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <TextCell Text="Age"/>
+                        <SwitchCell Text="Notifications"/>
+                    </TableSection>
+                    <TableSection Title="Contact">
+                        <EntryCell Label="Phone" Keyboard="Telephone" Placeholder="+91-9597415011"/>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

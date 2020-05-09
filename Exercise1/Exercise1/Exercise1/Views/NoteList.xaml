@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" x:Name="NotePage"
+             xmlns:local="clr-namespace:Exercise1.ViewModels"
+             xmlns:localbehavior="clr-namespace:Exercise1"
+             x:Class="Exercise1.Views.NoteList">
+    <ContentPage.Resources>
+        <Style TargetType="{x:Type Editor}">
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource AppBackgroundColor}" />
+        </Style>
+
+        <Style TargetType="Button"
+               ApplyToDerivedTypes="True"
+               CanCascade="True">
+            <Setter Property="BackgroundColor" Value="#1976D2" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <local:NoteListViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="addtask" Text="Add Task" Order="Primary" Clicked="addtask_Clicked"/>
+        <ToolbarItem Text="Details" Command="{Binding SaveCommand}" Order="Secondary"/>
+        <ToolbarItem Text="Show" Command="{Binding SaveCommand}" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <SearchBar Placeholder="Search..." SearchCommand="{Binding SearchCommand}">
+            <SearchBar.Behaviors>
+                <localbehavior:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchCommand}"/>
+            </SearchBar.Behaviors>
+        </SearchBar>
+        <ListView x:Name="listview"  ItemsSource="{Binding Notes}"
+                        SelectionMode="Single" HasUnevenRows="True"                  
+                        SelectedItem="{Binding SelectedNote}" IsPullToRefreshEnabled="True" Refreshing="ListView_Refreshing">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid HeightRequest="80">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Margin="5" HeightRequest="30" FontSize="Large" Text="{Binding Text}"/>
+                            <Label Margin="5" HeightRequest="30" Grid.Row="1" FontSize="Small" TextColor="Gray" Text="{Binding Date}"/>
+                        </Grid>
+                    </ViewCell>
+                    <!--<TextCell Text="{Binding Text}" Detail="{Binding Date}" TextColor="DeepPink">
+                        <TextCell.ContextActions>
+                            <MenuItem Text="Edit" Command="{Binding BindingContext.EditCommand, Source={x:Reference NotePage}}" CommandParameter="{Binding .}" Clicked="MenuItem_Clicked">
+                            </MenuItem>
+                            <MenuItem Text="Delete" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference NotePage}}" CommandParameter="{Binding .}" IsDestructive="True"/>
+                        </TextCell.ContextActions>
+                    </TextCell>-->
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

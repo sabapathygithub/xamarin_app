@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Name="noteentry"
+             x:Class="Exercise1.Views.NoteEntryPage">
+    <ContentPage.Resources>
+        <Style TargetType="Button"
+               ApplyToDerivedTypes="True"
+               CanCascade="True">
+            <Setter Property="BackgroundColor" Value="#1976D2" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="xamagon" BackgroundColor="PowderBlue" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+            <Editor Text="{Binding Note}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Placeholder="Enter the note here" Margin="10,10"/>
+            <Button Command="{Binding SaveCommand}" CommandParameter="{Binding .,Source={x:Reference noteentry}}" BackgroundColor="Green" Margin="10,10" Text="{Binding SaveText}" Grid.Column="0" Grid.Row="2"/>
+            <Button Command="{Binding EraseCommand}" BackgroundColor="Red" Margin="10,10" Text="Erase" Grid.Column="1" Grid.Row="2"/>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

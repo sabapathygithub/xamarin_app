@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Exercise1.Views"
+             mc:Ignorable="d" Title="Personal Organizer"
+             x:Class="Exercise1.Views.MasterPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ListView" x:FieldModifier="public">
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type local:MasterPageItem}">
+                        <local:MasterPageItem Title="Notes" TargetType="{x:Type local:NoteList}"/>
+                        <local:MasterPageItem Title="Weather" TargetType="{x:Type local:WeatherPage}"/>
+                        <local:MasterPageItem Title="Tab Page" TargetType="{x:Type local:TabbedPage1}"/>
+                        <local:MasterPageItem Title="Carousel Page" TargetType="{x:Type local:Carousel}"/>
+                        <local:MasterPageItem Title="Form Controls" TargetType="{x:Type local:FormControls}"/>
+                        <local:MasterPageItem Title="Table View" TargetType="{x:Type local:TableViewPage}"/>
+                    </x:Array>
+                </ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="1" Text="{Binding Title}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

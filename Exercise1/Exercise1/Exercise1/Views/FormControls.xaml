@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Exercise1.Views.FormControls">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <StackLayout>
+                <Switch ThumbColor="Blue" OnColor="Accent" x:Name="switch" IsToggled="True"/>
+                <Label IsVisible="{Binding Path=IsToggled, Source={x:Reference switch}}" Text="This is sample label which would be collapsed when the above switch is OFF."/>
+            </StackLayout>
+            <StackLayout>
+                <Slider ThumbColor="Blue" MaximumTrackColor="AliceBlue" x:Name="slider" Maximum="255" Minimum="10" Value="15"/>
+                <Label Text="{Binding Path=Value,Source={x:Reference slider},StringFormat='{0:N0}'}"/>
+            </StackLayout>
+            <StackLayout>
+                <Stepper x:Name="stepper"  Increment="1"/>
+                <Label Text="{Binding Path=Value,Source={x:Reference stepper}}"/>
+            </StackLayout>
+            <StackLayout>
+                <Entry Placeholder="Username"/>
+                <Entry x:Name="Password" Placeholder="Password" IsPassword="True"/>
+                <Entry Placeholder="Phone number" Keyboard="Numeric"/>
+                <StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                    <CheckBox x:Name="showpassword"/>
+                    <Label VerticalOptions="Center" Text="Show Password"/>
+                </StackLayout>
+                <Label IsVisible="{Binding IsChecked, Source={x:Reference showpassword}}" 
+                       Text="{Binding Text,Source={x:Reference Password}}"/>
+                <Picker Title="Sex">
+                    <Picker.Items>
+                        <x:String>Male</x:String>
+                        <x:String>Female</x:String>
+                    </Picker.Items>
+                </Picker>
+                <DatePicker Format="d MMM yyyy" MinimumDate="09 May 2020"/>
+                <TimePicker Time="13:00"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
