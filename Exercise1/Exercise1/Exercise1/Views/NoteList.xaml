@@ -21,11 +21,8 @@
             <Setter Property="CornerRadius" Value="5" />
         </Style>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <local:NoteListViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="addtask" Text="Add Task" Order="Primary" Clicked="addtask_Clicked"/>
+        <ToolbarItem x:Name="addtask" Text="Add Task" Order="Primary" Command="{Binding AddTaskCommand}" />
         <ToolbarItem Text="Details" Command="{Binding SaveCommand}" Order="Secondary"/>
         <ToolbarItem Text="Show" Command="{Binding SaveCommand}" Order="Secondary"/>
     </ContentPage.ToolbarItems>
@@ -41,6 +38,11 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Edit" Command="{Binding BindingContext.EditCommand, Source={x:Reference NotePage}}" CommandParameter="{Binding .}">
+                            </MenuItem>
+                            <MenuItem Text="Delete" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference NotePage}}" CommandParameter="{Binding .}" IsDestructive="True"/>
+                        </ViewCell.ContextActions>
                         <Grid HeightRequest="80">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -52,7 +54,7 @@
                     </ViewCell>
                     <!--<TextCell Text="{Binding Text}" Detail="{Binding Date}" TextColor="DeepPink">
                         <TextCell.ContextActions>
-                            <MenuItem Text="Edit" Command="{Binding BindingContext.EditCommand, Source={x:Reference NotePage}}" CommandParameter="{Binding .}" Clicked="MenuItem_Clicked">
+                            <MenuItem Text="Edit" Command="{Binding BindingContext.EditCommand, Source={x:Reference NotePage}}" CommandParameter="{Binding .}">
                             </MenuItem>
                             <MenuItem Text="Delete" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference NotePage}}" CommandParameter="{Binding .}" IsDestructive="True"/>
                         </TextCell.ContextActions>

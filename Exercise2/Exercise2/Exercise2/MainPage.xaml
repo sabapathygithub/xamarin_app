@@ -19,6 +19,7 @@
                             <localview:MasterPageItem Title="Absolute Layout 1" TargetType="{x:Type localview:AbsolutePage}"/>
                             <localview:MasterPageItem Title="Absolute Layout 2" TargetType="{x:Type localview:AbsolutePaymentPage}"/>
                             <localview:MasterPageItem Title="Relative Layout 1" TargetType="{x:Type localview:RelativePage}"/>
+                            <localview:MasterPageItem Title="Flex Layout" TargetType="{x:Type localview:FlexLayoutPage}"/>
                         </x:Array>
                     </ListView.ItemsSource>
                     <ListView.ItemTemplate>

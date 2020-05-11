@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Exercise1.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Exercise1.Views
     {
         public NoteList()
         {
+            BindingContext = new NoteListViewModel(new PageService());
             InitializeComponent();
         }
 

@@ -13,11 +13,19 @@ namespace Exercise1.ViewModels
     public class NoteListViewModel: INotifyPropertyChanged
     {
         private List<Note> _notesList;
-        public NoteListViewModel()
+
+        private readonly IPageService _pageService;
+        public NoteListViewModel(IPageService pageService)
         {
+            _pageService = pageService;
             GetData();
             EraseCommand = new Command(() => {
                 Note = string.Empty;
+            });
+
+            AddTaskCommand = new Command((parameter) =>
+            {
+                _pageService.PushAsync(new NoteEntryPage() { BindingContext = this });
             });
 
             SaveCommand = new Command(async (parameter) => {                
@@ -39,11 +47,7 @@ namespace Exercise1.ViewModels
                     Note = string.Empty;
                     SaveText = "Save";
                 }
-                if (parameter != null)
-                {
-                    var page = parameter as ContentPage;
-                    await page.Navigation.PopModalAsync();
-                }
+                _pageService.PopAsync();
             });
 
             SelectionChangedCommand = new Command(async () => {
@@ -70,7 +74,8 @@ namespace Exercise1.ViewModels
                     Note currentNote = (parameter as Note);
                     SelectedNote = currentNote;
                     Note = currentNote.Text;
-                    SaveText = "Update";                    
+                    SaveText = "Update";
+                    _pageService.PushAsync(new NoteEntryPage() { BindingContext = this });
                 }
             });
 
@@ -142,7 +147,7 @@ namespace Exercise1.ViewModels
             set { selectedNote = value; }
         }
 
-
+        public Command AddTaskCommand { get; }
         public Command SaveCommand { get; }
 
         public Command EraseCommand { get; }

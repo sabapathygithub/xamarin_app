@@ -25,8 +25,9 @@ namespace Exercise2
             var selectedMenu = e.SelectedItem as MasterPageItem;
             if(selectedMenu != null)
             {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(selectedMenu.TargetType));
-                Detail.Title = selectedMenu.Title;
+                var page = (Page)Activator.CreateInstance(selectedMenu.TargetType);
+                page.Title = selectedMenu.Title;
+                Detail = new NavigationPage(page);
                 MenuList.SelectedItem = null;
                 IsPresented = false;
             }

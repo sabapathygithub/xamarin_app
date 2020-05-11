@@ -19,6 +19,18 @@
             StringFormat='Fontsize:{0:F0}'}"
                Opacity="{Binding Value}" />
         <Slider x:Name="slider" Maximum="50" Minimum="16" Value="16"/>
-        <Label Text="Quotes" x:Name="QuoteLabel" FontSize="{Binding Value}"/>
+        <Frame Margin="10" HasShadow="True" BorderColor="Blue" BackgroundColor="Aquamarine">
+            <Label Text="Quotes" x:Name="QuoteLabel" FontSize="{Binding Value}"/>
+        </Frame>
+        <RadioButton Text="Expand"/>
+        <Expander>
+            <Expander.Header>
+                <Frame BorderColor="LightBlue">
+                    <Label Text="Quotes"/>
+                </Frame>
+            </Expander.Header>
+            <Image Source="https://raw.githubusercontent.com/xamarin/docs-archive/master/Images/stock/small/IMG_0437.JPG"/>
+        </Expander>
+        
     </StackLayout>
 </ContentPage>
